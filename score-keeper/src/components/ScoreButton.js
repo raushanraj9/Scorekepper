@@ -1,21 +1,31 @@
-import { useState } from "react";
 import "../Styles/scoreButton.css";
 
-function ScoreButton({ curScore, curWicket, onScoreChange, onWicketChange }) {
-  const [updateScore, setUpdateScore] = useState(curScore);
-  const [updateWicket, setUpdateWicket] = useState(curWicket);
-
+function ScoreButton({
+  curScore,
+  curWicket,
+  onScoreChange,
+  onWicketChange,
+  onOverChange,
+  curOver,
+}) {
   const handleScore = (data) => {
-    console.log(updateScore);
-
-    setUpdateScore(updateScore + data);
-
-    onScoreChange(updateScore + data);
+    onScoreChange(curScore + data);
+    handleOver();
   };
   const handleWicket = (data) => {
-   
-    setUpdateWicket(updateWicket + data);
-    onWicketChange(updateWicket + data);
+    onWicketChange(curWicket + data);
+    handleOver();
+  };
+  const handleOver = () => {
+    const intPart = Math.floor(curOver);
+    const check = curOver - intPart;
+    if (check >= 0.6) {
+      onOverChange(intPart + 1.1);
+    } else {
+      console.log(curOver);
+      onOverChange((curOver += 0.1));
+    }
+    console.log(curOver);
   };
 
   return (

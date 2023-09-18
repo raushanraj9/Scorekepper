@@ -9,14 +9,21 @@ import { useState } from 'react';
 function App() {
 const [score,setScore]=useState(0);
 const [wicket,setWicket]=useState(0);
+const [over,setOver]=useState(0);
+const Over=2;
 const handleScore=(data)=>{
   setScore(data);
 }
 const handleWicket=(data)=>{
   setWicket(data);
 }
+const handleOver=(data)=>{
+  setOver(data);
+}
 const GameOver=()=>{
+  setOver(Over)
   return (
+    
     <h1>Inning Over</h1>
   )
   
@@ -28,9 +35,9 @@ const GameOver=()=>{
 
    
     <h1 className='Title'>Score Keeper</h1>
-    <ScoreCard scoreData={score} wicketData={wicket}/>
-    {wicket ===10 ? <GameOver /> :
-    <ScoreButton onScoreChange={handleScore} onWicketChange={handleWicket} curScore={score} curWicket={wicket}/>
+    <ScoreCard scoreData={score} wicketData={wicket} overData={over}/>
+    {wicket ===10 || Over<=over? <GameOver /> :
+    <ScoreButton onScoreChange={handleScore} onWicketChange={handleWicket} onOverChange={handleOver} curScore={score} curWicket={wicket} curOver={over} />
   }
 
     <CommentryBox />
