@@ -15,6 +15,12 @@ const handleScore=(data)=>{
 const handleWicket=(data)=>{
   setWicket(data);
 }
+const GameOver=()=>{
+  return (
+    <h1>Inning Over</h1>
+  )
+  
+}
  
 
   return (
@@ -23,7 +29,10 @@ const handleWicket=(data)=>{
    
     <h1 className='Title'>Score Keeper</h1>
     <ScoreCard scoreData={score} wicketData={wicket}/>
+    {wicket ===10 ? <GameOver /> :
     <ScoreButton onScoreChange={handleScore} onWicketChange={handleWicket} curScore={score} curWicket={wicket}/>
+  }
+
     <CommentryBox />
     </div>
     

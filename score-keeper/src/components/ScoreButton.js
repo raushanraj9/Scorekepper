@@ -13,6 +13,7 @@ function ScoreButton({ curScore, curWicket, onScoreChange, onWicketChange }) {
     onScoreChange(updateScore + data);
   };
   const handleWicket = (data) => {
+   
     setUpdateWicket(updateWicket + data);
     onWicketChange(updateWicket + data);
   };
