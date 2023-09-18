@@ -26,11 +26,14 @@ function ScoreButton({ curScore, curWicket, onScoreChange, onWicketChange ,onOve
 
     }
     else{
-      onOverChange(curOver+0.1);
+      const result=Math.round((curOver+0.1)  * 10) / 10;;
+      console.log(typeof(result));
+    
+      onOverChange(result);
      
 
     }
-    console.log(curOver);
+    
 
 
   }
