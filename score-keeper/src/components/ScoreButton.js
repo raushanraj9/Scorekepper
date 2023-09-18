@@ -1,32 +1,39 @@
+
 import "../Styles/scoreButton.css";
 
-function ScoreButton({
-  curScore,
-  curWicket,
-  onScoreChange,
-  onWicketChange,
-  onOverChange,
-  curOver,
-}) {
+function ScoreButton({ curScore, curWicket, onScoreChange, onWicketChange ,onOverChange,curOver}) {
+ 
+
   const handleScore = (data) => {
+    
+
+   
+
     onScoreChange(curScore + data);
     handleOver();
   };
   const handleWicket = (data) => {
+   
+    
     onWicketChange(curWicket + data);
     handleOver();
   };
-  const handleOver = () => {
-    const intPart = Math.floor(curOver);
-    const check = curOver - intPart;
-    if (check >= 0.6) {
-      onOverChange(intPart + 1.1);
-    } else {
-      console.log(curOver);
-      onOverChange((curOver += 0.1));
+  const handleOver=()=>{
+    const intPart=Math.floor(curOver);
+    const check=curOver-intPart;
+    if(check>=0.5){
+      onOverChange(intPart + 1);
+
+    }
+    else{
+      onOverChange(curOver+0.1);
+     
+
     }
     console.log(curOver);
-  };
+
+
+  }
 
   return (
     <div className="button-container">

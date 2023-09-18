@@ -1,4 +1,5 @@
 function ScoreCard({scoreData,wicketData,overData}){
+   
     
     
    
