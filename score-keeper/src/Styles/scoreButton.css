@@ -5,9 +5,16 @@ button {
     background-color: #0074d9;
     color: #fff;
     border: none;
+    border-radius: 40%;
     cursor: pointer;
     
   }
   .button-container {
     text-align: center;
   }
+  .submit {
+    border-radius: 20%;
+   
+    background-color: green;
+  }
+ 

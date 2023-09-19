@@ -1,40 +1,51 @@
-
+import { useState } from "react";
 import "../Styles/scoreButton.css";
 
-function ScoreButton({ curScore, curWicket, onScoreChange, onWicketChange ,onOverChange,curOver}) {
+function ScoreButton({
+  curScore,
+  curWicket,
+  onScoreChange,
+  onWicketChange,
+  onOverChange,
+  curOver,
+  onComment
+}) {
+  const [value,setValue]=useState("");
+  const [comment,setComment]=useState("");
  
+  
 
+  
   const handleScore = (data) => {
     
-
-   
-
-    onScoreChange(curScore + data);
+    onScoreChange( data);
+    setValue(data);
     handleOver();
   };
   const handleWicket = (data) => {
-   
-    
-    onWicketChange(curWicket + data);
+    onWicketChange( data);
+    setValue("W");
     handleOver();
   };
-  const handleOver=()=>{
-    const intPart=Math.floor(curOver);
-    const check=curOver-intPart;
-    if(check>=0.5){
+  const handleOver = () => {
+    const intPart = Math.floor(curOver);
+    const check = curOver - intPart;
+    if (check >= 0.5) {
       onOverChange(intPart + 1);
+    } else {
+      const result = Math.round((curOver + 0.1) * 10) / 10;
 
-    }
-    else{
-      const result=Math.round((curOver+0.1)  * 10) / 10;;
-      console.log(typeof(result));
-    
       onOverChange(result);
-     
-
+      console.log("In ScoreButton");
+      console.log(curScore);
     }
+  };
+  const handleSubmit=(e)=>{
+    e.preventDefault();
+    console.log(comment);
     
-
+    onComment(value+','+comment);
+    setComment(" ");
 
   }
 
@@ -51,6 +62,17 @@ function ScoreButton({ curScore, curWicket, onScoreChange, onWicketChange ,onOve
       <button onClick={() => handleScore(5)}>5</button>
       <button onClick={() => handleScore(6)}>6</button>
       <button onClick={() => handleWicket(1)}>Wicket</button>
+      
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={comment}
+          onChange={(e) => setComment(e.target.value)}
+        />
+        <button className="submit" type="submit">Submit</button>
+      </form>
+
+      
     </div>
   );
 }

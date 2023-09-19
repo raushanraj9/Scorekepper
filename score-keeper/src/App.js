@@ -8,20 +8,31 @@ function App() {
   const [score, setScore] = useState(0);
   const [wicket, setWicket] = useState(0);
   const [over, setOver] = useState(0);
+  const[comments,setComment]=useState([]);
+
+  
   const Over = 2;
   const handleScore = (data) => {
-    setScore(data);
+    setScore(score+data);
+    
   };
   const handleWicket = (data) => {
-    setWicket(data);
+    setWicket(wicket+data);
+    
   };
   const handleOver = (data) => {
     setOver(data);
   };
   const GameOver = () => {
-    
     return <h1>Inning Over</h1>;
   };
+  const handleComments=(data)=>{
+const updatedComment = [...comments, data];
+setComment(updatedComment);
+    
+  }
+  console.log("In App");
+  console.log(score);
 
   return (
     <div>
@@ -37,10 +48,11 @@ function App() {
           curScore={score}
           curWicket={wicket}
           curOver={over}
+          onComment={handleComments}
         />
       )}
 
-      <CommentryBox />
+      <CommentryBox comments={comments} overs={over}/>
     </div>
   );
 }
